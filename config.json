@@ -1,0 +1,10 @@
+{
+  "website": {
+    "url": "https://www.bcb.gov.br/",
+    "xp_button_cookie": "//button[@class='btn btn-primary btn-accept']",
+    "xp_quote": "//table[@class='table light'][1]//tbody/tr[2]/td[@class='text-right'][1]/span"
+  },
+  "office": {
+    "doc_path": "relatorios"
+  }
+}
