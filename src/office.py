@@ -1,47 +1,41 @@
+# title: 'module office'
+# author: 'Elias Albuquerque'
+# version: '0.1.0'
+# created: '2024-08-09'
+# update: '2024-08-09'
 
-# TRANSFORMAR EM CLASSE: classe Office():
-
-
-
-import re
+import logging
 import docx
+import re
+import os
+from docx import Document
 
 
-def create_word_document(doc, filename='New document', doc_path=r'.'):
-    """Cria um documento do Word com o conteúdo especificado.
-    Args:
-        filename (str, optional): Nome do arquivo do documento. Padrão 'New document'.
-        doc_path (str, optional): Caminho do diretório para salvar o documento. Padrão (diretório atual).
-    Returns:
-        docx.Document: O objeto Document criado.
+class Office:
+    """
+    Classe para gerenciar documentos do Office, com métodos para criar e manipular documentos.
     """
 
-    if not re.match(r'^[a-zA-Z0-9_\.\-]+$', filename):
-        raise ValueError(
-            "Nome de arquivo inválido. Utilize apenas letras, números, '_' e '-'.")
-    if not os.path.isdir(doc_path):
-        raise ValueError("O caminho do documento é inválido.")
+    def __init__(self):
+        self.doc = None
 
-    try:
-        add_content(doc)
-        file_path = os.path.join(doc_path, filename + '.docx')
-        doc.save(file_path)
-    except Exception as e:
-        logging.error(f'Erro ao criar documento: {e}')
-        return None
+    def create_document(self, file_name, file_path):
+        """Cria um novo documento Word."""
 
-    return doc
+        logging.info(f'Criando arquivo "{file_name}" ...')
 
+        # Remove caracteres inválidos do nome do arquivo
+        file_name = re.sub(r'[^a-zA-Z0-9_\.\-]', '', file_name)
+        if not os.path.isdir(file_path):
+            raise ValueError("O caminho do documento é inválido.")
 
-def add_content(doc):
-    """Adiciona conteúdo no documento do Word.
-    Args:
-        doc (docx.Document): O objeto Document a ser modificado.
-    Raises:
-        Exception: Se ocorrer um erro ao adicionar o conteúdo ao documento.
-    """
+        try:
+            self.doc = Document()
+            file_path = os.path.join(file_path, file_name)
+            self.doc.save(file_path)
 
-    doc.add_heading('Título Principal', level=1)
-    doc.add_paragraph('Este é o primeiro parágrafo.')
-    doc.add_heading('Subtítulo', level=2)
-    doc.add_paragraph('Este é o segundo parágrafo.')
+            return True
+
+        except Exception as e:
+            logging.error(f'Erro ao criar "{file_name}": {e}')
+            return None
