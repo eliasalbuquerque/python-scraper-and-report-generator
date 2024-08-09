@@ -5,6 +5,6 @@
     "xp_quote": "//table[@class='table light'][1]//tbody/tr[2]/td[@class='text-right'][1]/span"
   },
   "office": {
-    "doc_path": "relatorios"
+    "author": "null"
   }
 }
