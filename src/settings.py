@@ -1,33 +1,9 @@
 # title: 'module settings to inittiate logging and webdriver'
 # author: 'Elias Albuquerque'
-# version: '0.1.0'
+# version: '0.1.1'
 # created: '2024-08-08'
 # update: '2024-08-08'
 
-"""
-Este módulo configura as configurações básicas da aplicação, incluindo:
-
-- Logging: Configura o sistema de logging usando o arquivo 'config.ini'.
-- Driver do Chrome: Configura o driver do Chrome com as opções desejadas.
-- Wait: Configura o objeto WebDriverWait para lidar com a espera de elementos na página.
-
-A classe Settings fornece métodos para acessar o driver do Chrome, o objeto wait e realizar o setup do logging.
-
-Uso:
-
-    from settings import Settings
-
-    settings = Settings()
-
-    # Acessando o driver do Chrome
-    driver = settings.driver
-
-    # Acessando o objeto wait
-    wait = settings.wait
-
-    # Usando o logging
-    logging.info("Mensagem de log")
-"""
 
 import os
 import logging.config
@@ -39,7 +15,32 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, ElementNotSelectableException
 
 
-class Settings:
+class Settings:     
+    """
+    Este módulo configura as configurações básicas da aplicação, incluindo:
+
+    - Logging: Configura o sistema de logging usando o arquivo 'config.ini'.
+    - Driver do Chrome: Configura o driver do Chrome com as opções desejadas.
+    - Wait: Configura o objeto WebDriverWait para lidar com a espera de elementos na página.
+
+    A classe Settings fornece métodos para acessar o driver do Chrome, o objeto wait e realizar o setup do logging.
+
+    Uso:
+
+        from settings import Settings
+
+        settings = Settings()
+
+        # Acessando o driver do Chrome
+        driver = settings.driver
+
+        # Acessando o objeto wait
+        wait = settings.wait
+
+        # Usando o logging
+        logging.info("Mensagem de log")
+    """
+    
     def __init__(self):
         self._setup_logging()
 
