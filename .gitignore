@@ -5,7 +5,7 @@
 
 # Directories and stuff
 destravadev5/
-reports/*
+reports/
 
 # Log files and directories
 log/
@@ -69,9 +69,6 @@ cover/
 # Translations
 *.mo
 *.pot
-
-# Executable config:
-setup.py
 
 # Django stuff:
 *.log
