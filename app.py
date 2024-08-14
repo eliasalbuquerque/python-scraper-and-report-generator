@@ -2,7 +2,7 @@
 # author: 'Elias Albuquerque'
 # version: '0.3.0'
 # created: '2024-08-08'
-# update: '2024-08-10'
+# update: '2024-08-14'
 
 
 import logging
@@ -50,6 +50,7 @@ def main():
         # 0. Carrega as configuracoes e variaveis da aplicacao
         settings = Settings()
         config = load_config()
+
         url = config['website']['url']
         xp_button_cookie = config['website']['xp_button_cookie']
         xp_quote = config['website']['xp_quote']
@@ -59,9 +60,9 @@ def main():
         author = config['office']['author']
         if author == "null":
             author = os.getlogin().capitalize()
-        report_file = "relatorio-" + now.strftime("%Y%m%d-%H%M%S")
-        report_path = os.path.join('reports', report_file)
 
+        report_file = "relatorio-" + now.strftime("%Y%m%d-%H%M%S") + ".docx"
+        report_path = os.path.join('reports', report_file)
 
         # 1. Acessar o site e extrair o valor da cotacao
         website = Website(settings)
@@ -71,28 +72,17 @@ def main():
     
         quote = website.extract_text_from_element(xp_quote, 'cotação')
         screenshot = website.take_screenshot(tempdir)
-    
 
         # 2. Criar arquivo Word.docx montar o relatorio
         office = Office()
         office.create_document(report_file, report_path)
 
-
         # 3. Adicionar conteudo no relatorio
         quote = "R$ " + string_to_float_to_string(quote)
         report_content(office, report_path, quote, today, hour, url, screenshot, author)
 
-
         # 4. Transforme em um PDF
         office.convert_docx_to_pdf(report_path)
-
-
-        # * revise as docstrings de todos os modulos
-        # * informar que o modulo report_content é necessario refatorar o codigo caso seja reutilizado em outro projeto
-
-
-        # 5. Entrega como executável
-        # - Transforme o código em um instalador(instruções nas dicas abaixo)
 
     finally:
         # Remover a pasta temporária no final da execução, se necessário
