@@ -6,6 +6,7 @@
 
 
 import os
+import sys
 import logging.config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -44,7 +45,7 @@ class Settings:
     def __init__(self):
         self._setup_logging()
 
-        logging.info('Aplicação Iniciada.')
+        logging.warning('Aplicação Iniciada.')
         logging.info('Iniciando configurações da aplicação...')
         
         self.driver = self._setup_driver()
@@ -54,9 +55,20 @@ class Settings:
         """
         Configura o logging da aplicação utilizando o arquivo 'config.ini'.
         """
-        
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_path = os.path.join(current_dir, 'config.ini')
+
+        # Define o caminho absoluto para o arquivo 'config.ini'
+        config_path = os.path.join(os.path.dirname(__file__), 'config.ini')
+
+        # Define o caminho absoluto para a pasta 'log' na raiz do projeto
+        if getattr(sys, 'frozen', False): 
+            log_dir = os.path.join(os.path.dirname(sys.executable), '.', 'log')
+        else: 
+            log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'log')
+
+        # Cria a pasta 'log' se não existir
+        os.makedirs(log_dir, exist_ok=True) 
+
+        # Configura o logging utilizando o arquivo 'config.ini'
         logging.config.fileConfig(config_path, disable_existing_loggers=False)
 
     def _setup_driver(self):
