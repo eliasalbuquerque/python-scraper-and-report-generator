@@ -4,11 +4,14 @@
 *$py.class
 
 # Directories and stuff
-destravadev5/
+destravadev*/
 reports/
 
 # Log files and directories
 log/
+
+# VSCode stuff:
+.vscode
 
 # Windows stuff:
 *.bat
