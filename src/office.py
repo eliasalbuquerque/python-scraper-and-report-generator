@@ -33,9 +33,24 @@ class Office:
         self.doc = None
 
     def create_document(self, file_name, file_path):
-        """Cria um novo documento com um nome e caminho definido."""
+        """Cria um novo documento com um nome e caminho definido.
+
+        Args:
+            file_name (str): O nome do arquivo a ser criado.
+            file_path (str): O caminho completo para o arquivo, incluindo o nome do arquivo.
+        """
 
         logging.info(f'Criando arquivo "{file_name}" ...')
+
+        # Verifica se o diretório existe
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            try:
+                os.makedirs(directory)
+                logging.info(f'Diretório "{directory}" criado.')
+            except Exception as e:
+                logging.error(f'Erro ao criar diretório "{directory}": {e}')
+                return None
             
         try:
             Document().save(file_path)
