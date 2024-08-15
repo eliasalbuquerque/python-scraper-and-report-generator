@@ -7,19 +7,21 @@ captura de tela da página, e cria um instalador para o programa.
 
 ## Funcionalidades
 
+- Possui instalador do programa
+- Possui arquivo executável
 - Extrai cotações de um site específico
-- Gera um relatório em formato PDF com:
+- Gera um relatório em formato Word com:
     - Data e hora da extração
     - URL do site
     - Cotação extraída
     - Screenshot da página com a cotação
     - Autor do relatório
 - Salva o relatório em uma pasta específica
-
+- Converte o arquivo Word para PDF
 
 ### Relatório sendo gerado:
 
-![Relatório sendo gerado](assets/relatorio-sendo-gerado.gif)
+[![Assista ao vídeo no YouTube](https://img.youtube.com/vi/RgUZGl4Ke4w/0.jpg)](https://www.youtube.com/watch?v=RgUZGl4Ke4w)
 
 ## Requisitos
 
@@ -29,19 +31,19 @@ captura de tela da página, e cria um instalador para o programa.
   `.docx` para PDF)
 - Bibliotecas:
 
-| Acesso à Web     | Gerenciamento de Arquivos | Manipulação de Dados | Formatação e Conversão |
-| ---------------- | ------------------------- | -------------------- | ---------------------- |
-| `selenium`       | `os`                      | `json`               | `re`                   |
-| `urllib.request` | `tempfile`                | `datetime`           | `docx`                 |
-|                  | `shutil`                  | `time`               | `subprocess`           |
-|                  | `pathlib`                 |                      |                        |
+|   Acesso à Web   | Gerenciamento de Arquivos | Manipulação de Dados | Formatação e Conversão |
+| :--------------: | :-----------------------: | :------------------: | :--------------------: |
+|    `selenium`    |           `os`            |        `json`        |          `re`          |
+| `urllib.request` |        `tempfile`         |      `datetime`      |         `docx`         |
+|                  |         `shutil`          |        `time`        |      `subprocess`      |
+|                  |         `pathlib`         |                      |                        |
 
 ## Como usar
 
 ### Download do Instalador:
 
 O instalador esta disponível 
-[aqui](https://github.com/eliasalbuquerque/python-scraper-and-report-generator/tree/main/download), 
+[aqui](https://github.com/eliasalbuquerque/python-scraper-and-report-generator/blob/main/download/mysetup.exe), 
 faça o download e inicie a instalação.
 
 ### Modo desenvolvedor:
